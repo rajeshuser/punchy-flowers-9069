@@ -1,25 +1,105 @@
-.mainDiv{
-    width: 30%;
-    margin: auto;
-    /* border: 1px solid; */
-    margin-top: 30px;
-    margin-bottom: 50px;
-    /* background: lightgray; */
-}
-@media screen and (max-width: 820px){
-    .signupButton{
-        font-size: 10px;
-    }
-    .mainDiv{
-        width: 60%;
-    }
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+  background-color: #f5f5f5;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
 }
 
-@media screen and (max-width: 376px){
-    .signupButton{
-        font-size: 10px;
-    }
-    .mainDiv{
-        width: 90%;
-    }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.forms {
+  background-color: #fff;
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 40vh;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.forms .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.forms .form .input-field {
+  position: relative;
+}
+
+.forms .form .input-field input {
+  width: 80%;
+  padding: 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+.forms .form .input-field i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  font-size: 20px;
+  color: #888;
+}
+
+.forms .form .checkbox-text {
+  display: flex;
+  align-items: center;
+}
+
+.forms .form .checkbox-content label {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.forms .form .input-field.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forms .form .input-field.button input {
+  background-color: #1abc9c;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.forms .form .input-field.button input:hover {
+  background-color: #148f77;
+}
+
+.forms .form .input-field.button input:focus {
+  outline: none;
+}
+
+.forms .form .input-field.button input:active {
+  transform: scale(0.98);
+}
+.forms .form .input-field:not(.button) {
+  margin-bottom: 10px;
+}
+
+.forms .form .checkbox-text {
+  margin-bottom: 10px;
+}
+
+.forms .form .input-field.button {
+  margin-top: 10px;
 }
