@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [location, setLocation] = useState("");
+  const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const navigate = useNavigate();
   const handleSubmit = () => {
     const payload = {
       email: email,
       password: password,
-      location: location,
+      name: name,
       age: age,
     };
     // console.log(payload)
@@ -24,40 +25,76 @@ function Signup() {
       });
   };
   return (
-    <>
-      <h1>Registration Page</h1>
-      <div>
-        Email:-
-        <input
-          type="text"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        Password:-
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        Location:-
-        <input
-          type="text"
-          placeholder="Where are you from"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        Age:-
-        <input
-          type="number"
-          placeholder="Enter your age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <button onClick={handleSubmit}>Submit</button>
+    <div>
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "-200px",
+          color: "#1abc9c",
+        }}
+      >
+        Registration Page
+      </h1>
+
+      <div class="container">
+        <div class="forms">
+          <div class="form signup">
+            <form action="#">
+              <div class="input-field">
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                <i class="uil uil-user"></i>
+              </div>
+              <div class="input-field">
+                <input
+                  type="text"
+                  alue={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  class="email"
+                  placeholder="Enter your email"
+                  required
+                />
+                <i class="uil uil-envelope icon"></i>
+              </div>
+              <div class="input-field">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  class="password"
+                  placeholder="Create a password"
+                  required
+                />
+                <i class="uil uil-lock icon"></i>
+              </div>
+              <div class="checkbox-text">
+                <div class="checkbox-content">
+                  <input type="checkbox" id="termCon" />
+                  <label for="termCon" id="lable">
+                    I accepted all terms and conditions
+                  </label>
+                </div>
+              </div>
+
+              <div class="input-field button">
+                <input
+                  id="button"
+                  type="button"
+                  value="Signup"
+                  onClick={handleSubmit}
+                />
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

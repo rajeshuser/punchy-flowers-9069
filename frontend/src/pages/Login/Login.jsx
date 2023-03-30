@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,16 +22,17 @@ function Login() {
   };
   return (
     <>
-      <h1>Login Page</h1>
-      <div>
-        Email:-
-        <input
+      <h1 style={{ textAlign: "center", color:"#388e3c" }}>Login Page</h1>
+      <div style={{gap:"20px"}}>
+        Email:   
+         
+         <input
           type="text"
           placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        Password:-
+        Password:
         <input
           type="password"
           placeholder="Enter password"
