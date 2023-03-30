@@ -1,31 +1,32 @@
 const express = require("express");
 const {connection} = require("./config/db")
 require("dotenv").config()
-const {userRouter} = require("./routes/user.routes.js")
-const cors = require("cors")
+const {userRouter} = require("./routes/user.routes")
+const {storeRouter} = require("./routes/store.routes")
+const {auth}=require("./middleware/auth.middleware");
+const { iphoneRouter } = require("./routes/iphone.routes");
+const { iwatchesRouter } = require("./routes/iwatches.routes");
+const { airpodsRouter } = require("./routes/airpods.routes");
+
 const app = express();
 
-
-
 app.use(express.json())
-app.use(cors())
+app.use("/users",userRouter)
+app.use(auth)
+app.use("/stores",storeRouter)
+app.use("/iphones", iphoneRouter)
+app.use("/iwatches",iwatchesRouter)
+app.use("/airpods",airpodsRouter)
 
-// user route 
-app.use("/users", userRouter)
-// middleware
-// app.use()
-//products route
-
-
-//Connection to server
-app.listen(process.env.port, async() => {
-    try{
+app.listen(process.env.port, async() =>{
+    try {
         await connection
-        console.log("connected to DB")
+        console.log("Connected to the DB");
+    } catch (err) {
+        console.log("Cannot connect to DB");
+        console.log(err);
     }
-    catch(err){
-        console.log("Not connected to DB");
-        console.log(er)
-    }
-    console.log(`Server is running at ${process.env.port}`)
+    console.log(`Server is running at ${process.env.port}`);
 })
+
+
