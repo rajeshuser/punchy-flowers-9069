@@ -2,14 +2,15 @@
 import Header from "../adminComponents/Header/Header";
 import Navbar from "../adminComponents/Header/Navbar";
 import styles from "./home.module.css"
+import PieChart from 'react-pie-graph-chart';
 import { Chart } from "react-google-charts";
 
 export const data = [
-  ["Element", "Density", { role: "style" }],
-  ["Copper", 8.94, "#b87333"], // RGB value
-  ["Silver", 10.49, "silver"], // English color name
-  ["Gold", 19.3, "gold"],
-  ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
+  ["Element", "Amount", { role: "style" }],
+  ["Products", 8.94, "#ed0331"], // RGB value
+  ["Users", 10.49, "#ed0331"], // English color name
+  ["Orders", 19.3, "#ed0331"],
+  // ["Platinum", 21.45, "color: #ed0331"], // CSS-style declaration
 ];
 
 
@@ -54,7 +55,33 @@ const Home = () => {
       
     </div>
     <div>
-    <Chart className="chartGoogleColumn" chartType="ColumnChart" width="100%" height="400px" data={data} />
+    <Chart className={styles.chartGoogleColumn} chartType="ColumnChart" width="90%" height="400px" data={data} />
+    </div>
+    <div className={styles.graphs}>
+    <PieChart data={[
+    {
+      type: "Products",
+      value: 235,
+      color: "#ed0331"
+    },
+    {
+      type: "Bicycle",
+      value: 165,
+      color: "#131921"
+    }
+  ]} />
+  <PieChart className={styles.pieone} data={[
+    {
+      type: "Products",
+      value: 235,
+      color: "#ed0331"
+    },
+    {
+      type: "Bicycle",
+      value: 165,
+      color: "#131921"
+    }
+  ]} />
     </div>
     </>
   );
