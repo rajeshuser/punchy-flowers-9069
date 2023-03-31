@@ -1,0 +1,6 @@
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const ADD_TO_FAVOURITE = "ADD_TO_FAVOURITE";
+export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
