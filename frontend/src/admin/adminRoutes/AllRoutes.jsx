@@ -1,16 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "../../adminPages/Home";
-import Login from "../../adminPages/Login";
-import SignIn from "../../adminPages/SignIn";
+
+import AdminOrders from "../adminPages/AdminOrdersPage";
+import AdminProducts from "../adminPages/AdminProducts";
+import AdminUsers from "../adminPages/AdminUsersPage";
+import Home from "../adminPages/Home";
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signin" element={<SignIn />} />
-      {/* <Route path="/about" element={<About />} /> */}
+      <Route path="/" element={<Home/>} />
+      {/* <Route path="/admin/update/:id" element={<AdminUpdateProductPage />} /> */}
+      <Route path="/admin/users" element={<AdminUsers/>} />
+      <Route path="/admin/products" element={<AdminProducts/>} />
+      <Route path="/admin/orders" element={<AdminOrders/>} />
     </Routes>
   );
 };

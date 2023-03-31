@@ -21,27 +21,24 @@ function Login() {
       });
   };
   return (
-    <>
-      <h1 style={{ textAlign: "center", color:"#388e3c" }}>Login Page</h1>
-      <div style={{gap:"20px"}}>
-        Email:   
-         
+    <div className="mainDiv">
+      <h1>LOGIN</h1>
+      <div>
          <input
           type="text"
           placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        Password:
         <input
           type="password"
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit}>SUBMIT</button>
       </div>
-    </>
+    </div>
   );
 }
 
