@@ -62,4 +62,19 @@ productsRouter.delete("/delete/:_id", async (req, res) => {
   }
 });
 
+//searching with keyword
+
+productsRouter.get("/search/:keyword", async (req, res) => {
+  try {
+    const keyword = req.params.keyword;
+    const regex = new RegExp(keyword, "i");
+    const products = await ProductsModel.find({ name: regex });
+    res.json(products);
+    // res.json(products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = { productsRouter };
