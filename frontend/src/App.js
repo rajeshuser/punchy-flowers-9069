@@ -10,18 +10,13 @@ import Footer from "./components/Footer";
 import AdminProducts from "./admin/adminPages/AdminProducts";
 import Home from "./admin/adminPages/Home";
 
-
-
-
 function App() {
 	return (
 		<div className="App">
-			{/* <Navigation /> 
+			<Navigation />
 			<AllRoutes />
-			<Footer /> */}
-			
+			<Footer />
 			<AdminProducts/>
-			{/* <Home/> */}
 		</div>
 	);
 }

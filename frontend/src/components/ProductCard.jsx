@@ -1,5 +1,6 @@
 import { Image, VStack, Heading, Box, HStack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 
 export default function ProductCard({ product }) {
 	return (
@@ -33,6 +34,7 @@ export default function ProductCard({ product }) {
 				></Box>
 			</HStack>
 			<Heading fontSize="md">${product.price}</Heading>
+			<Rating rating={product.rating} />
 		</VStack>
 	);
 }
