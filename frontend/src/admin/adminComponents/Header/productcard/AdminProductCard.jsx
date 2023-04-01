@@ -1,6 +1,46 @@
 import React from 'react'
+import axios from "axios";
 import styles from "./adminProductCard.module.css"
-const AdminProductCard = () => {
+const AdminProductCard = ({  brand,
+  category,
+  description,
+  image,
+  price,
+  quantity,
+  rating,
+  title,
+  type,
+  _id,}) => {
+    const deleteProduct = async (id) => {
+      try {
+        return await axios.delete(`../product/delete/${id}`, {
+          headers: {
+            Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    const getProducts = async ()=>{
+      try {
+          return await axios.get(`../product/get`, {
+            headers: {
+              Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          });
+        } catch (err) {
+          console.log(err);
+        }
+  }
+    
+    const handleDelete = (id) => {
+      deleteProduct(id)
+        .then((res) => {
+          getProducts();
+        })
+        .catch((err) => console.log(err));
+    };
   return (
     <div className={styles.productcard}>
       <div className={styles.left}>
@@ -22,8 +62,7 @@ const AdminProductCard = () => {
         </div>
       </div>
       <div className={styles.btn}>
-         <button>UPDATE</button>
-         <button>DELETE</button>
+         <button onClick={()=>handleDelete(_id)}>DELETE</button>
       </div>
       </div>
     </div>

@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios";
 import AdminNavbar from "../adminComponents/Header/AdminNavbar"
 import Header from "../adminComponents/Header/Header";
 import AdminProductCard from '../adminComponents/Header/productcard/AdminProductCard';
 import styles from "./adminProducts.module.css"
 
 const AdminProducts = () => {
+    const [products, setProducts] = useState([]);
+    // const [query, setQuery] = useState("");
+
+    const getProducts = async ()=>{
+        try {
+            return await axios.get(`../product/get`, {
+              headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+              },
+            });
+          } catch (err) {
+            console.log(err);
+          }
+    }
+   
+    useEffect(() => {
+      getProducts().then((res) => {
+        setProducts(res.data.products);
+        console.log(res.data.products);
+      });
+    }, []);
   return (
     
     <div>
@@ -50,11 +72,9 @@ const AdminProducts = () => {
                 <button>search</button>
               </div>
               <div className={styles.productcard}>
-                  <AdminProductCard/>
-                  <AdminProductCard/>
-                  <AdminProductCard/>
-                  <AdminProductCard/>
-                  <AdminProductCard/>
+                 {products?.map((el,i)=>{
+                    return <AdminProductCard key={i} {...el}/> 
+                 }) }
               </div>
            </div>
       

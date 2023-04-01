@@ -7,6 +7,8 @@ import "./App.css";
 import AllRoutes from "./components/AllRoutes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import AdminProducts from "./admin/adminPages/AdminProducts";
+import Home from "./admin/adminPages/Home";
 
 function App() {
 	return (
@@ -14,6 +16,7 @@ function App() {
 			<Navigation />
 			<AllRoutes />
 			<Footer />
+			<AdminProducts/>
 		</div>
 	);
 }
