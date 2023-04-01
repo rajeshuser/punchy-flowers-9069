@@ -8,16 +8,12 @@ import AllRoutes from "./components/AllRoutes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
-
-
-
 function App() {
 	return (
 		<div className="App">
-			{/* <Navigation /> 
+			<Navigation />
 			<AllRoutes />
-			<Footer /> */}
-			
+			<Footer />
 		</div>
 	);
 }
