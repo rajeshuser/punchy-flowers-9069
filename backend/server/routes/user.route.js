@@ -6,15 +6,12 @@ const { authenticate } = require("../Middleware/Authentication.Middleware");
 require("dotenv").config();
 const userRouter = express.Router();
 
-userRouter.get("/user", authenticate, async (req, res) => {
-  const { user } = req.body;
-  console.log(user);
+userRouter.get("/", async (req, res) => {
   try {
-    await UserModel.findOne({ _id: user }).then((r) => {
-      return res.status(200).send(r);
-    });
-  } catch (e) {
-    return res.status(400).send(e.message);
+    const users = await UserModel.find();
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
@@ -63,6 +60,7 @@ userRouter.post("/login", async (req, res) => {
     res.send({ msg: "Something went wrong", error: err.message });
   }
 });
+
 userRouter.put("/update", async (req, res) => {
   const user = req.body;
   const token = req.header.authorization;
@@ -72,6 +70,19 @@ userRouter.put("/update", async (req, res) => {
     res.send(userdoc);
   } catch (err) {
     res.send({ msg: "Something went wrong", error: err.message });
+  }
+});
+
+// DELETE a user by ID
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ message: "User deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 module.exports = { userRouter };
