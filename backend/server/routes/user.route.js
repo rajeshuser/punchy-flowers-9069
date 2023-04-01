@@ -74,9 +74,9 @@ userRouter.put("/update", async (req, res) => {
 });
 
 // DELETE a user by ID
-app.delete("/users/:id", async (req, res) => {
+userRouter.delete("/:id", async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const user = await UserModel.findByIdAndDelete(req.params.id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
