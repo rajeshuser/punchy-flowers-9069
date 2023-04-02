@@ -29,4 +29,52 @@ productsRouter.get("/:_id", async (req, res) => {
   }
 });
 
+//add update delete
+
+productsRouter.post("/add", async (req, res) => {
+  try {
+    const product = new ProductsModel(req.body);
+    await product.save();
+    res.status(200).send({ msg: "A new Product has been added" });
+  } catch (err) {
+    res.status(400).send({ msg: err.message });
+  }
+});
+
+productsRouter.patch("/update/:_id", async (req, res) => {
+  const { _id } = req.params;
+  const payload = req.body;
+  try {
+    await ProductsModel.findByIdAndUpdate({ _id: _id }, payload);
+    res.status(200).send({ msg: "Product has been updated" });
+  } catch (err) {
+    res.status(400).send({ msg: err.message });
+  }
+});
+
+productsRouter.delete("/delete/:_id", async (req, res) => {
+  const { _id } = req.params;
+  try {
+    await ProductsModel.findByIdAndDelete({ _id: _id });
+    res.status(200).send({ msg: "Product has been deleted" });
+  } catch (err) {
+    res.status(400).send({ msg: err.message });
+  }
+});
+
+//searching with keyword
+
+productsRouter.get("/search/:keyword", async (req, res) => {
+  try {
+    const keyword = req.params.keyword;
+    const regex = new RegExp(keyword, "i");
+    const products = await ProductsModel.find({ name: regex });
+    res.json(products);
+    // res.json(products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = { productsRouter };

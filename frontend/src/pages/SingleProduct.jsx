@@ -9,10 +9,16 @@ import {
 	Spinner,
 	Text,
 	Button,
+	SimpleGrid,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import batteryIcon from "../resources/batteryIcon.jpg";
+import cameraIcon from "../resources/cameraIcon.jpg";
+import connectivityIcon from "../resources/connectivityIcon.jpg";
+import faceLockIcon from "../resources/faceLockIcon.jpg";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 export default function SingleProduct() {
 	const { _id } = useParams();
@@ -37,6 +43,10 @@ export default function SingleProduct() {
 		// is user logged in
 	};
 
+	const handleAddToFavourite = (event) => {
+		// is user logged in
+	};
+
 	if (!product) {
 		return (
 			<Spinner
@@ -54,24 +64,29 @@ export default function SingleProduct() {
 	return (
 		<Stack
 			flexDirection={{ base: "column", lg: "row" }}
-			justifyContent="center"
-			gap="100px"
-			padding="50px"
+			justifyContent="start"
+			gap="50px"
+			padding="50px 100px 50px 100px"
 		>
-			<Center>
+			<Center backgroundColor="#ccddee" borderRadius="20px" flex="2">
 				<Image
 					src={
 						"https://cdn.pixabay.com/photo/2013/07/12/18/39/smartphone-153650_960_720.png"
 					}
 					alt={product.name}
 					width="50%"
+					padding={{ base: "50px", lg: "0" }}
 				/>
 			</Center>
-			<VStack alignItems="start">
-				<Heading>{product.name}</Heading>
-				<Divider color="grey" />
+			<VStack alignItems="start" gap="20px" flex="2">
+				<Heading borderBottom="1px solid black" paddingBottom="20px" width="100%">
+					{product.name}
+				</Heading>
+				<HStack width="100%" justifyContent="end" boder="1px solid black">
+					<Text>Favourite</Text>
+					<MdFavorite onClick={handleAddToFavourite} fontSize="30px" />
+				</HStack>
 				<Heading fontSize="xl">${product.price}</Heading>
-				<Divider color="grey" />
 				<HStack justifyContent="center" alignItems="center">
 					<Text fontWeight="bold">Color</Text>
 					<Box
@@ -81,43 +96,114 @@ export default function SingleProduct() {
 						backgroundColor={product.color.toLowerCase()}
 					></Box>
 				</HStack>
+				<VStack
+					width="100%"
+					border="1px solid grey"
+					borderRadius="10px"
+					padding="10px"
+					alignItems="stretch"
+				>
+					<HStack justifyContent="space-between">
+						<Text>Storage</Text>
+						<Text>{product.storage} GB</Text>
+					</HStack>
+					<HStack justifyContent="space-between">
+						<Text>Weight</Text>
+						<Text>{product[`${product.category}Weight`]} gm</Text>
+					</HStack>
+					<HStack justifyContent="space-between">
+						<Text>Battery</Text>
+						<Text>{product.battery} hr</Text>
+					</HStack>
+					<HStack justifyContent="space-between">
+						{product.category === "iPhone" || product.category === "iWatch" ? (
+							<>
+								<Text>Display</Text>
+								<Text>
+									{`${product[`${product.category}Size`]} ${
+										product.category === "iPhone"
+											? "inch"
+											: product.category === "iWatch"
+											? "mm"
+											: null
+									}`}
+								</Text>
+							</>
+						) : null}
+					</HStack>
+				</VStack>
+
 				<br />
-				<Button onClick={handleAddToCart}>Add To Cart</Button>
+				<Button
+					width="100%"
+					padding="20px"
+					border="1px solid blue"
+					borderRadius="20px"
+					backgroundColor="#ccddee"
+					as={Link}
+					to="/cart"
+				>
+					Buy Now
+				</Button>
+				<Button
+					onClick={handleAddToCart}
+					width="100%"
+					padding="20px"
+					border="1px solid blue"
+					borderRadius="20px"
+					backgroundColor="#ccddee"
+				>
+					Add To Cart
+				</Button>
+			</VStack>
+			<VStack alignItems="stretch" flex="1">
+				<HStack justifyContent="space-between">
+					<Image src={batteryIcon} />
+					<Text fontWeight="bold">Humongous</Text>
+				</HStack>
+				<HStack justifyContent="space-between">
+					<Image src={cameraIcon} />
+					<Text fontWeight="bold">High Definition</Text>
+				</HStack>
+				<HStack justifyContent="space-between">
+					<Image src={connectivityIcon} />
+					<Text fontWeight="bold">Fastest</Text>
+				</HStack>
+				<HStack justifyContent="space-between">
+					<Image src={faceLockIcon} />
+					<Text fontWeight="bold">Most Secure</Text>
+				</HStack>
 			</VStack>
 		</Stack>
 	);
 }
 
-function Divider({ thickness = 1, color = "black" }) {
-	return <Box height={`${thickness}px`} width="100%" backgroundColor={color}></Box>;
-}
-
 function getDummyProduct() {
 	return {
-		_id: 12,
-		name: "AirPods Max Pro",
-		category: "Airpod",
-		image: "https://drive.google.com/file/d/1crTJqUhGAZGla8GWlkzUO5WwRC5OF034/view?usp=sharing",
-		color: "Red",
-		phoneSize: 4.5,
-		watchSize: 40,
-		strapMaterial: "Fabric",
+		_id: 1,
+		name: "iPhone 14 Pro",
+		category: "iPhone",
+		image: "https://drive.google.com/file/d/12H7kooAglx1Ki3T2pvAI3cRFVxFsX1Ea/view?usp=sharing",
+		color: "Green",
+		iPhoneSize: 4.7,
+		iWatchSize: 44,
+		strapMaterial: "Silicon",
 		shape: "Round",
-		body: "Glass",
+		body: "Steel",
 		waterResistant: true,
-		camera: 12,
-		battery: 11,
-		touchSensor: true,
+		camera: 5,
+		battery: 14,
+		touchSensor: false,
 		faceLock: true,
-		display: "Super Ratina",
-		storage: 16,
-		phoneWeight: 150,
-		watchWeight: 30,
-		airpodWeight: 3,
+		display: "Liquid Ratina",
+		storage: 128,
+		iPhoneWeight: 220,
+		iWatchWeight: 35,
+		AirpodWeight: 7,
 		connectivity: 4,
-		generation: 3,
-		rating: 3.7,
+		generation: 1,
+		rating: 1.9,
 		bandSize: "Large",
-		price: 80000,
+		price: 45000,
 	};
 }

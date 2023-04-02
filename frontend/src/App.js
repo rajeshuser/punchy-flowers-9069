@@ -11,21 +11,18 @@ import AdminProducts from "./admin/adminPages/AdminProducts";
 import Home from "./admin/adminPages/Home";
 import AdminAddProductPage from "./admin/adminPages/AdminAddProductPage";
 
-
-
-
 function App() {
 
 	return (
 		<div className="App">
-			{/* <Navigation /> 
+			<Navigation />
 			<AllRoutes />
-			<Footer /> */}
+			<Footer /> 
 			
-			{/* <AdminProducts/> */}
-			{/* <AdminAddProductPage/> */}
-			<Home/>
+		
 
+
+			
 		</div>
 	);
 }
