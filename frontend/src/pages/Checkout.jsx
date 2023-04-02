@@ -1,10 +1,7 @@
 import { VStack, HStack, Input, Image, Checkbox, Heading, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
-function PlaceOrderButton(params) {
-	return <Button>Place Order</Button>;
-}
+import PlaceOrderButton from "../components/PlaceOrderButton";
 
 export default function Ckeckout() {
 	const [cardNumber, setCardNumber] = useState("");
@@ -58,13 +55,17 @@ export default function Ckeckout() {
 						if (
 							value !== "" &&
 							(value.length > 7 ||
-								(isNumber(value[value.length - 1]) == false &&
+								(isNumber(value[value.length - 1]) === false &&
 									value[value.length - 1] !== "/"))
 						) {
 							return;
 						}
-						if (value.length > 2 && value.includes("/") == false) {
-							value = value[0] + value[1] + "/" + value.substring(2);
+						if (value.length > 2 && value.includes("/") === false) {
+							let mm = +(value[0] + value[1]);
+							if (mm > 31) {
+								mm = value[0];
+							}
+							value = mm + "/" + value.substring(2);
 						}
 						setCardExpiry(value);
 					}}

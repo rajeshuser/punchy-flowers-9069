@@ -5,6 +5,7 @@ import {
 	ADD_TO_FAVOURITE,
 	UPDATE_QUANTITY,
 	REMOVE_PRODUCT,
+	MOVE_PRODUCTS_FROM_CART_TO_ORDERS,
 } from "./types";
 
 export function loginUser(user) {
@@ -45,5 +46,11 @@ export function removeProduct(payload) {
 	return {
 		type: REMOVE_PRODUCT,
 		payload,
+	};
+}
+
+export function moveProductsFromCartToOrders() {
+	return {
+		type: MOVE_PRODUCTS_FROM_CART_TO_ORDERS,
 	};
 }

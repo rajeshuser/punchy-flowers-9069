@@ -11,125 +11,69 @@ import {
 	Heading,
 } from "@chakra-ui/react";
 
+const questionsAndAnswers = [
+	{
+		question: "When will I get my items?",
+		answer: "By entering a zip code, you’ll get estimated delivery and pickup dates for your items. You’ll get a final delivery date after you place your order. Delivery estimates are based on item availability and the shipping option you choose. For pickup, you’ll choose a pickup date and store during checkout.",
+	},
+	{
+		question: "Can I pick up my items at an Apple Store?",
+		answer: "Yes. If you choose pickup, you’ll select a store and a pickup date for your items during checkout. Not all items are available for pickup. We’ll send you a text message when your items are ready for pickup.",
+	},
+	{
+		question:
+			"How do I learn what my Apple Store is doing to make shopping and services safer for customers?",
+		answer: "We’re putting safety first by taking extra measures to ensure a clean, safer environment for our customers. This includes health screenings, requiring the use of face masks, and limiting store occupancy. We have also added new pickup options for customers.",
+	},
+	{
+		question: "What are my payment options?",
+		answer: "We accept Apple Pay, most credit and debit cards, PayPal, and Apple Store Gift Cards — though PayPal, Apple Store Gift Cards, and financing options may not be available for all products. Financing options are also available to qualifying customers. You can call 1‑800‑MY‑APPLE for more information.",
+	},
+	{
+		question: "How is sales tax calculated?",
+		answer: "The tax listed on the Bag and Checkout pages is an estimate. Your invoice will reflect the final total tax, which includes state taxes, local taxes, and any applicable fees.",
+	},
+	{
+		question: "Does Apple offer an education discount?",
+		answer: "Yes. Apple offers special pricing for students, teachers, administrators, staff members, and homeschooling programs. If you think you qualify, visit the Apple Store for Education to place your order.",
+	},
+	{
+		question: "What are my financing options?",
+		answer: "Now you can pay monthly and interest-free◊ for eligible items when you choose to check out with Apple Card Monthly Installments. And if you’re buying an iPhone, Mac, iPad, or Apple Watch, you can add a trade-in and pay even less.",
+	},
+];
+
 export default function FAQ() {
 	return (
-		<VStack marginTop="50px" alignItems="stretch" padding="10px 100px">
-			<Heading>FAQ</Heading>
-			<Stack direction={["column", "column", "column", "row"]}>
-				<Box border="1px solid grey" padding="10px" flex="1">
-					<Text fontWeight="bold" color="#009999">
-						When can I specify my lens power?
-					</Text>
-					<Text>
-						After you complete the checkout process you'll be able to choose your lens
-						power online. We don't charge for adding power to lens!
-					</Text>
-				</Box>
-				<Box border="1px solid grey" padding="10px" flex="1">
-					<Text fontWeight="bold" color="#009999">
-						I have a discount coupon/reward points
-					</Text>
-					<Text>
-						Great! You can apply a discount coupon/reward points during step 3 of the
-						checkout process.
-					</Text>
-				</Box>
-			</Stack>
-
-			<Stack direction={["column", "column", "column", "row"]}>
-				<Box border="1px solid grey" padding="10px" flex="1">
-					<HStack fontWeight="bold" color="#009999" marginBottom="10px">
-						<BiGlasses size="30px" />
-						<Text>Perfect Fit Promise</Text>
-					</HStack>
-					<Text>
-						We know you want to be sure your new glasses fit perfectly. That's why youll
-						have 14 days to trythem, if they aren't right for you simply return them for
-						adjustment, replacement, or a complete refund.
-					</Text>
-				</Box>
-				<Box border="1px solid grey" padding="10px" flex="1">
-					<HStack fontWeight="bold" color="#009999" marginBottom="10px">
-						<BsEmojiSmile size="30px" />
-						<Text>Dr. Ujjwal Sonika, / AIIMS</Text>
-					</HStack>
-					<Text>
-						I had seen these stylish products off and on, and finally bought a pair of
-						rimless glasses from their store. I love the quality of the frames and the
-						precision with which my lenses have been made and fitted. They are very
-						professional with what they do. Good work!
-					</Text>
-				</Box>
-				<Box border="1px solid grey" padding="10px" flex="1">
-					<HStack fontWeight="bold" color="#009999" marginBottom="10px">
-						<TbZoomMoney size="30px" />
-						<Text>Best Price Guaranteed</Text>
-					</HStack>
-					<Text>
-						If you find your chosen products cheaper at any other Indian online
-						retailer, we'll refund the difference. This is why our customers know they
-						always get the best prices in the country.
-					</Text>
-				</Box>
-			</Stack>
+		<VStack marginTop="50px" gap="20px" alignItems="stretch" padding="0px 100px 100px 100px">
+			<Heading textAlign="left">FAQ</Heading>
 
 			<Box backgroundColor="#333" color="white" textAlign="center" padding="10px">
 				ALL YOUR DOUBTS RESOLVED
 			</Box>
 
 			<Accordion allowToggle>
-				<AccordionItem>
-					<h2>
-						<AccordionButton backgroundColor="#777" color="white" _hover={{}}>
-							<Box as="span" flex="1" textAlign="left">
-								Ques 1. What is Gold Membership?
-							</Box>
-							<AccordionIcon />
-						</AccordionButton>
-					</h2>
-					<AccordionPanel pb={4}>
-						Ans 1. Gold Membership provides exclusive benefits like Buy One Get One on
-						Eyeglasses for 365 days to its members. Offer can be availed Online or at
-						400+ Stores across India. You can share membership benefits with your family
-						with no upper limit to number of orders placed. Membership is valid on 1000+
-						products and it is priced at ₹600 for first 10,000 members.
-					</AccordionPanel>
-				</AccordionItem>
-
-				<AccordionItem>
-					<h2>
-						<AccordionButton backgroundColor="#777" color="white" _hover={{}}>
-							<Box as="span" flex="1" textAlign="left">
-								Ques 2. I’m not sure about the size and fit of the frames.
-							</Box>
-							<AccordionIcon />
-						</AccordionButton>
-					</h2>
-					<AccordionPanel pb={4}>
-						Ans 2. We offer glasses in 3 sizes – small, medium, and large. Click the
-						‘Frame Size’ link at the bottom of the page to know your size. ~95% of our
-						customers find a medium size frame to be the best fit.
-					</AccordionPanel>
-				</AccordionItem>
-
-				<AccordionItem>
-					<h2>
-						<AccordionButton backgroundColor="#777" color="white" _hover={{}}>
-							<Box as="span" flex="1" textAlign="left">
-								Ques 3. What if I buy glasses & they don’t fit me? What if the
-								lenses aren’t right ?
-							</Box>
-							<AccordionIcon />
-						</AccordionButton>
-					</h2>
-					<AccordionPanel pb={4}>
-						Ans 3. You can buy glasses fitted with your prescription or even the frames
-						standalone. We custom-make glasses with single vision, bifocal, or
-						progressive prescriptions across all powers. Our glasses are ~50% cheaper
-						than market average, since we bypass intermediaries – and best of all, we
-						charge the same price, regardless of your power!
-					</AccordionPanel>
-				</AccordionItem>
+				{questionsAndAnswers.map((qna, i) => (
+					<AccordionItem>
+						<h2>
+							<AccordionButton>
+								<Box
+									as="span"
+									flex="1"
+									textAlign="left"
+									paddingTop="10px"
+									paddingBottom="10px"
+								>
+									Que {i + 1}. {qna.question}
+								</Box>
+								<AccordionIcon />
+							</AccordionButton>
+						</h2>
+						<AccordionPanel pb={4} textAlign="left">
+							Ans {i + 1}. {qna.answer}
+						</AccordionPanel>
+					</AccordionItem>
+				))}
 			</Accordion>
 		</VStack>
 	);

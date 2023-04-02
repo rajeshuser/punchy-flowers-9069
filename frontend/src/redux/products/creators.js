@@ -8,12 +8,14 @@ export function updateProducts(payload) {
 	};
 }
 
-export function getProducts() {
+export function getProducts(payload) {
+	// payload = query
 	return async function (dispatch) {
 		try {
 			const products = await axios({
 				method: "get",
 				url: "",
+				params: payload,
 			});
 			dispatch(updateProducts(products));
 		} catch (error) {
