@@ -1,16 +1,18 @@
 import { Heading, HStack, SimpleGrid, Stack, Box } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../redux/products/creators";
 import ProductCard from "../components/ProductCard";
 import Filter from "../components/Filter";
 
 export default function Products(params) {
-	// const products = useSelector((state) => state.productsState.products);
-	const products = getDummyProducts();
+	const products = useSelector((state) => state.productsState.products);
+	// const products = getDummyProducts();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!products) {
-			getProducts();
+			dispatch(getProducts({}));
 		}
 	}, []);
 

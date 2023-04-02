@@ -11,7 +11,7 @@ import {
 	Button,
 	SimpleGrid,
 } from "@chakra-ui/react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import batteryIcon from "../resources/batteryIcon.jpg";
@@ -20,10 +20,18 @@ import connectivityIcon from "../resources/connectivityIcon.jpg";
 import faceLockIcon from "../resources/faceLockIcon.jpg";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import FAQ from "../components/FAQ";
+import { useSelector, useDispatch } from "react-redux";
+import { api } from "../globals";
+import { addToCart, addToFavourite } from "../redux/user/creators";
 
 export default function SingleProduct() {
 	const { _id } = useParams();
 	const [product, setProduct] = useState(getDummyProduct());
+	const user = useSelector((state) => state.userState.user);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	console.log(user);
 
 	useEffect(() => {
 		// getProduct();
@@ -31,7 +39,7 @@ export default function SingleProduct() {
 			try {
 				const product = await axios({
 					method: "get",
-					url: "",
+					url: `${api}/${_id}`,
 				});
 				setProduct(product);
 			} catch (error) {
@@ -42,10 +50,20 @@ export default function SingleProduct() {
 
 	const handleAddToCart = (event) => {
 		// is user logged in
+		if (!user) {
+			navigate("/login");
+		} else {
+			dispatch(addToCart({ productId: _id }));
+		}
 	};
 
 	const handleAddToFavourite = (event) => {
 		// is user logged in
+		if (!user) {
+			navigate("/login");
+		} else {
+			dispatch(addToFavourite({ productId: _id }));
+		}
 	};
 
 	if (!product) {
@@ -86,7 +104,12 @@ export default function SingleProduct() {
 					</Heading>
 					<HStack width="100%" justifyContent="end" boder="1px solid black">
 						<Text>Favourite</Text>
-						<MdFavorite onClick={handleAddToFavourite} fontSize="30px" />
+						<MdFavorite
+							onClick={handleAddToFavourite}
+							fontSize="30px"
+							color="red"
+							_hover={{ cursor: "pointer" }}
+						/>
 					</HStack>
 					<Heading fontSize="xl">${product.price}</Heading>
 					<HStack justifyContent="center" alignItems="center">

@@ -29,7 +29,7 @@ function Signup() {
       <h1
         style={{
           textAlign: "center",
-          marginBottom: "-200px",
+        //   marginBottom: "-200px",
           color: "#1abc9c",
         }}
       >

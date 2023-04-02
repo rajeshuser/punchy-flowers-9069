@@ -13,14 +13,14 @@ import { getProducts } from "../redux/products/creators";
 
 export default function Filter() {
 	const [search, setSearch] = useState("");
-	const [sort, setSort] = useState("Any");
-	const [order, setOrder] = useState("Any");
-	const [color, setColor] = useState("Any");
-	const [display, setDisplay] = useState("Any");
-	const [battery, setBattery] = useState("Any");
-	const [weight, setWeight] = useState("Any");
-	const [faceLock, setFaceLock] = useState("Any");
-	const [generation, setGeneration] = useState("Any");
+	const [sort, setSort] = useState("any");
+	const [order, setOrder] = useState("any");
+	const [color, setColor] = useState("any");
+	const [display, setDisplay] = useState("any");
+	const [battery, setBattery] = useState("any");
+	const [weight, setWeight] = useState("any");
+	const [faceLock, setFaceLock] = useState("any");
+	const [generation, setGeneration] = useState("any");
 
 	const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ export default function Filter() {
 			generation,
 		};
 		dispatch(getProducts(query));
-	});
+	}, [search, sort, order, color, display, battery, weight, faceLock, generation]);
 
 	return (
 		<VStack position="sticky" top="10px" alignItems="stretch">
@@ -50,11 +50,16 @@ export default function Filter() {
 				placeholder="Search..."
 			/>
 			<Accordion backgroundColor="#bbccdd">
-				<FilterItem name="Sort" state={sort} setState={setSort} values={["asc", "desc"]} />
 				<FilterItem
 					name="Order"
 					state={order}
 					setState={setOrder}
+					values={["asc", "desc"]}
+				/>
+				<FilterItem
+					name="Sort"
+					state={sort}
+					setState={setSort}
 					values={["price", "rating"]}
 				/>
 				<FilterItem
@@ -117,7 +122,7 @@ function FilterItem({ name, state, setState, values, unit }) {
 				<HStack justifyContent="space-between" width="100%" paddingRight="10px">
 					<Text>{name}</Text>
 					<Text>{`${getStringForValue(state)} ${
-						state === "Any" || unit === undefined ? "" : unit
+						state === "any" || unit === undefined ? "" : unit
 					}`}</Text>
 				</HStack>
 				<AccordionIcon />
@@ -153,15 +158,11 @@ function getValueForString(string) {
 	return string;
 }
 
-// if (string === "ascending" || string === "descending") {
-// 	return capitalizeFirstLetter(string);
-// }
-// if (string === "price" || string === "rating") {
-// 	return capitalizeFirstLetter(string);
-// }
-
 function getStringForValue(value) {
-	if (value === "ascending" || value === "descending") {
+	if (value === "any") {
+		return "Any";
+	}
+	if (value === "asc" || value === "desc") {
 		return capitalizeFirstLetter(value);
 	}
 	if (value === "price" || value === "rating") {
