@@ -26,6 +26,7 @@ import { addToCart, addToFavourite } from "../redux/user/creators";
 
 export default function SingleProduct() {
 	const { _id } = useParams();
+	// const [product, setProduct] = useState(null);
 	const [product, setProduct] = useState(getDummyProduct());
 	const user = useSelector((state) => state.userState.user);
 	const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export default function SingleProduct() {
 	console.log(user);
 
 	useEffect(() => {
-		// getProduct();
+		getProduct();
 		async function getProduct() {
 			try {
 				const product = await axios({
@@ -70,7 +71,7 @@ export default function SingleProduct() {
 		return (
 			<Spinner
 				padding="30px"
-				margin="100px"
+				margin="200px"
 				thickness="7px"
 				speed="0.3s"
 				emptyColor="gray"
