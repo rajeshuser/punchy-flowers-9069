@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminNavbar from "../adminComponents/Header/AdminNavbar"
 import Header from "../adminComponents/Header/Header";
 import AdminProductCard from '../adminComponents/Header/productcard/AdminProductCard';
 import AdminUserCard from '../adminComponents/usercard/AdminUserCard';
 import styles from "./adminProducts.module.css"
+import axios from 'axios';
 
 const AdminUsers = () => {
+    const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const getProducts = ()=>{
+    try {
+      axios.get(`https://dummyjson.com/products`)
+      .then((res)=>setProducts(res.data.products))
+      .catch((err)=>console.log(err))
+      // return response.data;
+      // console.log(response)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const getUsers = ()=>{
+    try {
+      axios.get(`https://dummyjson.com/users`)
+      .then((res)=>setUsers(res.data.users))
+      .catch((err)=>console.log(err))
+      // return response.data;
+      // console.log(response)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+ 
+  useEffect(() => {
+     getProducts()
+     getUsers()
+  },[]);
   return (
     
     <div>
@@ -23,7 +54,7 @@ const AdminUsers = () => {
             <img src="https://cdn-icons-png.flaticon.com/128/4140/4140048.png" alt="" />
         </div>
         <div className={styles.info}>
-            <h3>777</h3>
+            <h3>{users.length}</h3>
             <p>TOTAL USERS</p>
         </div>
     </div>
@@ -32,7 +63,7 @@ const AdminUsers = () => {
             <img src="https://cdn-icons-png.flaticon.com/128/3703/3703259.png" alt="" />
         </div>
         <div className={styles.info}>
-            <h3>3000</h3>
+            <h3>{products.length}</h3>
             <p>TOTAL PRODUCTS</p>
         </div>
     </div>
@@ -46,17 +77,14 @@ const AdminUsers = () => {
         </div>
     </div>
               </div>
-              <div className={styles.searchbar}>
+              {/* <div className={styles.searchbar}>
                 <input type="text" placeholder='search users'/>
                 <button>search</button>
-              </div>
+              </div> */}
               <div className={styles.productcard}>
-                  <AdminUserCard/>
-                  <AdminUserCard/>
-                  <AdminUserCard/>
-                  <AdminUserCard/>
-                  <AdminUserCard/>
-                  <AdminUserCard/>
+              {users?.map((el,i)=>{
+                    return <AdminUserCard key={i} {...el}/> 
+                 }) }
               </div>
            </div>
       

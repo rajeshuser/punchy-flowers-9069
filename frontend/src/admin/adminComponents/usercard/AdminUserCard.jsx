@@ -1,16 +1,26 @@
 import React from 'react'
 import styles from "./AdminUserCard.module.css"
+import axios from 'axios';
 
-const AdminUserCard = () => {
+const AdminUserCard = ({
+  id,image,username
+}) => {
+
+ const handleDeleteUser = (id) => {
+    axios.delete(`https://dummyjson.com/users/${id}'`)
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+    alert("user deleted")
+  };
   return (
     <div className={styles.usercard}>
       <div className={styles.left}>
-      <img src="https://cdn-icons-png.flaticon.com/128/4140/4140048.png" alt="" />
+      <img src={image} alt="" />
       </div>
       <div className={styles.right}>
       <div className={styles.title}>
-        <h3>username : Asif Shaikh</h3>
-        <h3>userid :  124578963254789</h3>
+        <h3>username : {username}</h3>
+        <h3>userid :{id}</h3>
       </div>
       <div className={styles.numbers}>
         <div>
@@ -26,7 +36,7 @@ const AdminUserCard = () => {
          <p>status:active</p>
       </div>
       <div className={styles.btn}>
-         <button>DELETE</button>
+         <button onClick={()=>handleDeleteUser(id)}>DELETE</button>
       </div>
       </div>
     </div>

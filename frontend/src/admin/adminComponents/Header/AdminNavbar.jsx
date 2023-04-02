@@ -6,10 +6,10 @@ import styles from "./AdminNavbar.module.css"
 const AdminNavbar = () => {
   return (
     <div className={styles.adminnavbar}>
-      <img src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" alt="" />
-      <p>Home</p>
-      <p>login</p>
-      <p>sigunup</p>
+      <img src="https://cdn-icons-png.flaticon.com/128/4140/4140048.png" alt="" />
+      <p>GadgetStore</p>
+      <p>Admin Dashboard</p>
+      
 
       
     </div>
