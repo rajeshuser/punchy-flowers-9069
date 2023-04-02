@@ -7,18 +7,37 @@ import {
 	AccordionPanel,
 	AccordionIcon,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../redux/products/creators";
 
 export default function Filter() {
 	const [search, setSearch] = useState("");
-	const [sortOrder, setSortOrder] = useState("Any");
-	const [sortBy, setSortBy] = useState("Any");
+	const [sort, setSort] = useState("Any");
+	const [order, setOrder] = useState("Any");
 	const [color, setColor] = useState("Any");
 	const [display, setDisplay] = useState("Any");
 	const [battery, setBattery] = useState("Any");
 	const [weight, setWeight] = useState("Any");
 	const [faceLock, setFaceLock] = useState("Any");
 	const [generation, setGeneration] = useState("Any");
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const query = {
+			search,
+			sort,
+			order,
+			color,
+			display,
+			battery,
+			weight,
+			faceLock,
+			generation,
+		};
+		dispatch(getProducts(query));
+	});
 
 	return (
 		<VStack position="sticky" top="10px" alignItems="stretch">
@@ -31,16 +50,11 @@ export default function Filter() {
 				placeholder="Search..."
 			/>
 			<Accordion backgroundColor="#bbccdd">
+				<FilterItem name="Sort" state={sort} setState={setSort} values={["asc", "desc"]} />
 				<FilterItem
-					name="Sort Order"
-					state={sortOrder}
-					setState={setSortOrder}
-					values={["ascending", "descending"]}
-				/>
-				<FilterItem
-					name="Sort By"
-					state={sortBy}
-					setState={setSortBy}
+					name="Order"
+					state={order}
+					setState={setOrder}
 					values={["price", "rating"]}
 				/>
 				<FilterItem
