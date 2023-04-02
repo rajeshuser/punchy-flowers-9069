@@ -2,8 +2,10 @@
 import Header from "../adminComponents/Header/Header";
 import Navbar from "../adminComponents/Header/Navbar";
 import styles from "./home.module.css"
+import axios from "axios";
 import PieChart from 'react-pie-graph-chart';
 import { Chart } from "react-google-charts";
+import { useEffect, useState } from "react";
 
 export const data = [
   ["Element", "Amount", { role: "style" }],
@@ -15,6 +17,27 @@ export const data = [
 
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  // const [query, setQuery] = useState("");
+
+  const getProducts = async ()=>{
+      try {
+          return await axios.get(`../product/get`)
+            // headers: {
+            //   Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
+            // },
+      // });
+        } catch (err) {
+          console.log(err);
+        }
+  }
+ 
+  useEffect(() => {
+    getProducts().then((res) => {
+      setProducts(res.data.products);
+      console.log(res.data.products);
+    });
+  }, []);
  return (
     <>
     <div className={styles.home}>

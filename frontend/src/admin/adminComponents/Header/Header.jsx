@@ -44,7 +44,7 @@ const Header = () => {
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
+              <p>{menuCollapse ? "Gadget" : "Gadget Store"}</p>
             </div>
             <div className="closemenu" onClick={menuIconClick}>
                 {/* changing menu collapse icon on click */}
@@ -62,7 +62,7 @@ const Header = () => {
               </MenuItem>
               <MenuItem icon={<FaList />}><Link to="/admin/products">Products</Link></MenuItem>
               <MenuItem icon={<FaRegHeart />}><Link to="/admin/orders">Orders</Link></MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Upadate Product</MenuItem>
+              <MenuItem icon={<RiPencilLine />}>Add Product</MenuItem>
               <MenuItem icon={<FaRegHeart/>}><Link to="/admin/users">Users</Link></MenuItem>
             </Menu>
           </SidebarContent>
