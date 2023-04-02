@@ -12,7 +12,6 @@ export function updateProducts(payload) {
 export function getProducts(payload) {
 	// payload = query
 	return async function (dispatch) {
-		console.log("thunk");
 		try {
 			const response = await axios({
 				method: "get",

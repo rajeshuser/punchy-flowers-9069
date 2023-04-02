@@ -1,6 +1,7 @@
 import { VStack, HStack, Input, Image, Checkbox, Heading, Button } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import PlaceOrderButton from "../components/PlaceOrderButton";
 
 export default function Ckeckout() {
@@ -9,7 +10,7 @@ export default function Ckeckout() {
 	const [cardCVV, setCardCVV] = useState("");
 	const [cardHolder, setCardHolder] = useState("");
 	const [isCardValid, setIsCardValid] = useState(false);
-	const totalPayable = 1000;
+	const { totalPayable } = useLocation().state;
 
 	function updateIsCardValid() {
 		if (
@@ -96,7 +97,7 @@ export default function Ckeckout() {
 				</Heading>
 			)}
 			<br />
-			<PlaceOrderButton isDisabled={isCardValid == false} />
+			<PlaceOrderButton isDisabled={isCardValid === false} />
 		</VStack>
 	);
 }
@@ -106,11 +107,11 @@ function isNumber(string) {
 }
 
 function isCardNumberValid(cardNumber) {
-	return cardNumber.length == 12 && isNumber(cardNumber);
+	return cardNumber.length === 12 && isNumber(cardNumber);
 }
 
 function isCardExpiryValid(cardExpiry) {
-	return cardExpiry.length == 7 && cardExpiry.includes("/");
+	return cardExpiry.length === 7 && cardExpiry.includes("/");
 }
 
 function isCardCVVValid(cardCVV) {

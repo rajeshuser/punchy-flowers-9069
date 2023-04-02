@@ -22,6 +22,7 @@ function Signup() {
 			navigate("/login");
 		});
 	};
+	
 	return (
 		<div>
 			<h1

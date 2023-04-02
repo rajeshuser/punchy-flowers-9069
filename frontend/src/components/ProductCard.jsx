@@ -7,7 +7,7 @@ import Airpod from "../resources/Airpod.jpg";
 
 export default function ProductCard({ product }) {
 	const images = { iPhone, iWatch, Airpod };
-	console.log(images, product.category);
+	
 	return (
 		<VStack
 			margin="auto"

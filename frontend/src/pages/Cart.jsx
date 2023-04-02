@@ -1,24 +1,54 @@
 import { Heading, Stack, HStack, VStack, Box, Text, Button } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import CartProduct from "../components/CartProduct";
 import Bill from "../components/Bill";
+import axios from "axios";
+import { api } from "../globals";
 
 export default function Cart() {
-	const cartProducts = getDummyProducts();
+	const user = useSelector((state) => state.userState.user);
+	const [cartProducts, setCartProducts] = useState(null);
+	// const [cartProducts, setCartProducts] = getDummyProducts();
+	const navigate = useNavigate();
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		if (!user) {
+			navigate("/login");
+			alert("Please login first");
+			return;
+		}
 
-	if (!cartProducts) {
+		getCartProducts();
+
+		async function getCartProducts() {
+			try {
+				const cartProducts = [];
+				for (let { productId } of cartProducts) {
+					const response = await axios({
+						method: "get",
+						url: `${api}/${productId}`,
+					});
+					const product = response.data;
+					cartProducts.push(product);
+				}
+				setCartProducts(cartProducts);
+			} catch (error) {
+				console.log({ error: error.message });
+			}
+		}
+	}, []);
+
+	if (!user) {
 		return <Loading />;
 	}
 
 	return (
 		<VStack gap="30px">
 			<VStack gap="20px" marginTop="20px" marginBottom="20px">
-				<Heading>Your cart total is ${2023}</Heading>
+				<Heading>Your cart total is ${totalCartBill(user.cart, cartProducts)}</Heading>
 				<Text fontSize="xl">Free delivery and Free returns</Text>
 				<Button
 					backgroundColor="#0077ee"
@@ -26,6 +56,7 @@ export default function Cart() {
 					width="300px"
 					as={Link}
 					to="/checkout"
+					state={{ totalPayable: totalCartBill(user.cart, cartProducts) - 60 }}
 				>
 					Check Out
 				</Button>
@@ -33,9 +64,24 @@ export default function Cart() {
 			{cartProducts.map((product) => (
 				<CartProduct product={product} />
 			))}
-			<Bill />
+			<Bill cartBill={totalCartBill(user.cart, cartProducts)} />
 		</VStack>
 	);
+}
+
+function totalCartBill(cart, cartProducts) {
+	let pnq = {};
+	for (let { productId, quantity } of cart) {
+		pnq[productId] = { quantity };
+	}
+	for (let cartProduct of cartProducts) {
+		pnq[cartProduct._id].price = cartProduct.price;
+	}
+	let bill = 0;
+	for (let id in pnq) {
+		bill += pnq[id].quantity * pnq[id].price;
+	}
+	return bill;
 }
 
 function getDummyProducts() {

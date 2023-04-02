@@ -32,8 +32,6 @@ export default function SingleProduct() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	console.log(user);
-
 	useEffect(() => {
 		getProduct();
 		async function getProduct() {

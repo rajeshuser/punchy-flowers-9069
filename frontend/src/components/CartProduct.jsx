@@ -11,8 +11,24 @@ import {
 	Center,
 	Checkbox,
 } from "@chakra-ui/react";
+import iPhone from "../resources/iPhone.jpg";
+import iWatch from "../resources/iWatch.jpg";
+import Airpod from "../resources/Airpod.jpg";
+import { updateQuantity } from "../redux/user/creators";
+import { removeProduct } from "../redux/user/creators";
 
 export default function CartProduct({ product }) {
+	const images = { iPhone, iWatch, Airpod };
+
+	const handleRemoveProduct = (event) => {
+		removeProduct({ productId: product._id });
+	};
+
+	const handleQuantityChange = (event) => {
+		const quantity = +event.target.value;
+		updateQuantity({ productId: product._id, quantity });
+	};
+
 	return (
 		<Stack
 			flexDirection={{ base: "column", lg: "row" }}
@@ -22,18 +38,13 @@ export default function CartProduct({ product }) {
 			borderBottom="1px solid grey"
 		>
 			<Center flex="1">
-				<Image
-					src={
-						"https://cdn.pixabay.com/photo/2013/07/12/18/39/smartphone-153650_960_720.png"
-					}
-					width="50%"
-				/>
+				<Image src={images[product.category]} width="50%" />
 			</Center>
 			<VStack flex="2">
 				<HStack width="100%" justifyContent="space-between">
 					<Text fontSize="30px">{product.name}</Text>
 					<Text fontSize="30px">${product.price}</Text>
-					<Select width="100px">
+					<Select width="100px" onChange={handleQuantityChange}>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -45,7 +56,7 @@ export default function CartProduct({ product }) {
 						<option>9</option>
 						<option>10</option>
 					</Select>
-					<Button>Remove</Button>
+					<Button onClick={handleRemoveProduct}>Remove</Button>
 				</HStack>
 				<VStack alignItems="stretch" borderTop="1px solid grey" paddingTop="20px">
 					<HStack fontSize="lg" fontWeight="bold" justifyContent="space-between">

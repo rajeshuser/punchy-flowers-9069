@@ -1,7 +1,7 @@
 import { Heading, Text, HStack, VStack, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export default function Bill() {
+export default function Bill({ cartBill }) {
 	return (
 		<VStack
 			width="80%"
@@ -12,7 +12,7 @@ export default function Bill() {
 		>
 			<HStack justifyContent="space-between" fontSize="xl">
 				<Text>Subtotal</Text>
-				<Text>$338.00</Text>
+				<Text>${cartBill}</Text>
 			</HStack>
 			<HStack justifyContent="space-between" fontSize="xl">
 				<Text>Shipping</Text>
@@ -29,7 +29,7 @@ export default function Bill() {
 				borderTop="1px solid grey"
 			>
 				<Text>Total</Text>
-				<Text>$500.00</Text>
+				<Text>${cartBill - 60}</Text>
 			</HStack>
 			<Text textAlign="right" color="blue">
 				Get Daily Cash with Gadget Card
@@ -43,6 +43,7 @@ export default function Bill() {
 					padding="25px"
 					as={Link}
 					to="/checkout"
+					state={{ totalPayable: cartBill - 60 }}
 				>
 					Check Out
 				</Button>

@@ -20,9 +20,9 @@ export default function SlideShow() {
 
 	useEffect(() => {
 		if (!timer.current) {
-			// setInterval(() => {
-			// 	setActiveIndex((activeIndex) => (activeIndex + 1) % slides.length);
-			// }, 2000);
+			setInterval(() => {
+				setActiveIndex((activeIndex) => (activeIndex + 1) % slides.length);
+			}, 2000);
 		}
 		return () => clearInterval(timer.current);
 	}, []);
