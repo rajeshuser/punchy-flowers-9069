@@ -8,18 +8,15 @@ import AllRoutes from "./components/AllRoutes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
-
-
-
 function App() {
-	return (
-		<div className="App">
-			{/* <Navigation /> 
+  return (
+    <div className="App">
+      {/* <Navigation /> 
 			<AllRoutes />
 			<Footer /> */}
-			
-		</div>
-	);
+      {/* <AllAdminRoutes /> */}
+    </div>
+  );
 }
 
 export default App;
