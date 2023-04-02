@@ -7,23 +7,19 @@ import "./App.css";
 import AllRoutes from "./components/AllRoutes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-
+import AllAdminRoutes from "./admin/adminRoutes/AllRoutes";
 
 function App() {
-	
-	return (
-		
-		<div className="App">
-			<Navigation />
+  return (
+    <div className="App">
+      {/* <Navigation />
 			<AllRoutes />
 
 
-			<Footer /> 
-			
-			
-
-		</div>
-	);
+			<Footer />  */}
+      <AllAdminRoutes />
+    </div>
+  );
 }
 
 export default App;
