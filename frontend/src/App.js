@@ -10,18 +10,18 @@ import Footer from "./components/Footer";
 import AdminProducts from "./admin/adminPages/AdminProducts";
 import Home from "./admin/adminPages/Home";
 import AdminAddProductPage from "./admin/adminPages/AdminAddProductPage";
+import AdminUsers from "./admin/adminPages/AdminUsersPage";
+import AllAdminRoutes from "./admin/adminRoutes/AllRoutes";
 
 function App() {
-
+	
 	return (
+		
 		<div className="App">
 			<Navigation />
 			<AllRoutes />
 			<Footer /> 
 			
-		
-
-
 			
 		</div>
 	);

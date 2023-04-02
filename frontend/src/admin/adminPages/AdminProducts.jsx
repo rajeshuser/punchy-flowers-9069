@@ -7,26 +7,35 @@ import styles from "./adminProducts.module.css"
 
 const AdminProducts = () => {
     const [products, setProducts] = useState([]);
-    // const [query, setQuery] = useState("");
+  const [users, setUsers] = useState([]);
 
-    const getProducts = async ()=>{
-        try {
-            return await axios.get(`../product/get`, {
-              headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token")),
-              },
-            });
-          } catch (err) {
-            console.log(err);
-          }
+  const getProducts = ()=>{
+    try {
+      axios.get(`https://dummyjson.com/products`)
+      .then((res)=>setProducts(res.data.products))
+      .catch((err)=>console.log(err))
+      // return response.data;
+      // console.log(response)
+    } catch (err) {
+      console.log(err);
     }
-   
-    useEffect(() => {
-      getProducts().then((res) => {
-        setProducts(res.data.products);
-        console.log(res.data.products);
-      });
-    }, []);
+  }
+  const getUsers = ()=>{
+    try {
+      axios.get(`https://dummyjson.com/users`)
+      .then((res)=>setUsers(res.data.users))
+      .catch((err)=>console.log(err))
+      // return response.data;
+      // console.log(response)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+ 
+  useEffect(() => {
+     getProducts()
+     getUsers()
+  },[]);
   return (
     
     <div>
@@ -44,7 +53,7 @@ const AdminProducts = () => {
             <img src="https://cdn-icons-png.flaticon.com/128/4140/4140048.png" alt="" />
         </div>
         <div className={styles.info}>
-            <h3>777</h3>
+            <h3>{users.length}</h3>
             <p>TOTAL USERS</p>
         </div>
     </div>
@@ -53,7 +62,7 @@ const AdminProducts = () => {
             <img src="https://cdn-icons-png.flaticon.com/128/3703/3703259.png" alt="" />
         </div>
         <div className={styles.info}>
-            <h3>3000</h3>
+            <h3>{products.length}</h3>
             <p>TOTAL PRODUCTS</p>
         </div>
     </div>
@@ -67,10 +76,10 @@ const AdminProducts = () => {
         </div>
     </div>
               </div>
-              <div className={styles.searchbar}>
+              {/* <div className={styles.searchbar}>
                 <input type="text" placeholder='search products '/>
                 <button>search</button>
-              </div>
+              </div> */}
               <div className={styles.productcard}>
                  {products?.map((el,i)=>{
                     return <AdminProductCard key={i} {...el}/> 
