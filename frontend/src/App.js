@@ -9,19 +9,23 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import AdminProducts from "./admin/adminPages/AdminProducts";
 import Home from "./admin/adminPages/Home";
+import AdminAddProductPage from "./admin/adminPages/AdminAddProductPage";
 
 
 
 
 function App() {
+
 	return (
 		<div className="App">
 			{/* <Navigation /> 
 			<AllRoutes />
 			<Footer /> */}
 			
-			<AdminProducts/>
-			{/* <Home/> */}
+			{/* <AdminProducts/> */}
+			{/* <AdminAddProductPage/> */}
+			<Home/>
+
 		</div>
 	);
 }

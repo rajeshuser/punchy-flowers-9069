@@ -1,0 +1,294 @@
+@media screen and (min-width : 481px) {
+    /* @import url('https://fonts.googleapis.com/css2?family=Gajraj+One&family=Open+Sans:wght@400;500;600&family=Rowdies:wght@300;400;700&display=swap'); */
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Kanit:wght@200;300;400;500&family=Sigmar+One&display=swap');
+    .add{
+        background-color: #000000;
+        background-image: linear-gradient(315deg, #000000 0%, #958e69 74%);
+        height: 120vh;
+    }   
+    .card{
+        background-color: #131921;
+        color: white;
+        width: 40%;
+        margin: auto;
+        box-shadow: 5px 5px 5px black;
+        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+        height: 130px;
+        display: flex;
+        margin-top: 10px;
+    }
+    .poster{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid red; */
+        width: 40%;
+        
+    }
+    .info{
+        width: 60%;
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+        gap: 2%;
+        text-align: right;
+        padding: 5%;
+        /* font-family: 'Gajraj One', cursive; */
+    }
+    .info>p{
+        font-size: 14px;
+        /* font-family: 'Gajraj One', cursive; */
+        font-family: 'Sigmar One', cursive;
+        font-weight: 600;
+        
+    }
+    .info>h3{
+        font-size: 28px;
+        /* font-family: 'Gajraj One', cursive; */
+        font-family: 'Sigmar One', cursive;
+        font-weight: 600;
+        color: red;
+    }
+    .poster>img{
+        width: 40%;
+        /* margin-top: 19px;
+        margin-left: 9px; */
+     
+    }
+ .home{
+ 
+     display: flex;
+     justify-content: flex-start;
+ }
+ .right{
+     width: 70%;
+ }
+ 
+ .cardMain{
+     width: 100%;
+     margin-left: 41%;
+     display: flex;
+     gap: 4%;
+ }
+ .chartGoogleColumn{
+     border: 1px solid #131921;
+     /* background-color: #131921; */
+     margin-top: 20px;
+     margin-left:20% ;
+     box-shadow: 5px 5px 3px black;
+ }
+ .graphs{
+     /* border: 1px solid black; */
+     box-shadow: 5px 5px 3px black;
+     display: flex;
+     margin-left: 18%;
+     margin-right: 1%;
+     justify-content: space-around;
+     margin-top: 7px;
+ }
+ .pieone {
+     border: 1px solid red;
+     background-color: #131921;
+     box-shadow: 5px 5px 3px black;
+ }
+ .feilds{
+    /* border: 1px solid red; */
+    width: 70%;
+    margin:auto;
+    margin-left: 25%;
+    margin-top: 95px;
+    padding: 20px;
+    
+
+    
+ }
+ .feilds>h1{
+    font-size: 25px;
+    font-family: 'Sigmar One', cursive;
+    /* font-weight: 600; */
+    font-weight: bolder;
+    color: #131921;
+ }
+ form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 20px;
+ }
+ .feilds>form>input{
+    border: 1px solid #131921;
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Sigmar One', cursive;
+    font-weight: 600;
+ }
+ .feilds>form>button{
+    border: 1px solid #131921;
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ed0331;
+    background-color: #131921;
+    font-family: 'Sigmar One', cursive;
+    font-weight: 600;
+    transition-duration: 500ms;
+ }
+ .feilds>form>button:hover{
+    cursor: pointer;
+    /* border: 1px solid #ed0331; */
+    background-color: white;
+    color: #131921;
+ }
+}
+@media screen and (max-width : 480px) {
+ @import url('https://fonts.googleapis.com/css2?family=Gajraj+One&family=Open+Sans:wght@400;500;600&family=Rowdies:wght@300;400;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Kanit:wght@200;300;400;500&family=Sigmar+One&display=swap');
+ .add{
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #958e69 74%);
+    height: 120vh;
+}
+ .card{
+     background-color: #131921;
+     color: #ed0331;
+     width: 100%;
+     margin: auto;
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+     height: 130px;
+     display: flex;
+     margin-top: 10px;
+ }
+ .poster{
+     /* border: 1px solid red; */
+     width: 40%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     
+ }
+ .info{
+     width: 60%;
+     /* border: 1px solid red; */
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     /* align-items: center; */
+     gap: 1%;
+     text-align: right;
+     padding: 5%;
+     /* font-family: 'Gajraj One', cursive; */
+     font-family: 'Sigmar One', cursive;
+ }
+ .info>p{
+     font-size: 15px;
+     font-family: 'Gajraj One', cursive;
+     font-weight: 600;
+     
+ }
+ .info>h3{
+     font-size: 28px;
+     font-family: 'Gajraj One', cursive;
+     font-weight: 600;
+     color: red;
+ }
+ .poster>img{
+     width: 90%;
+
+     /* padding: 5px;
+     margin-top: 25px; */
+ }
+ .home{
+     /* border: 1px solid red; */
+     display: flex;
+     /* height: 100vh; */
+     justify-content: flex-start;
+     /* background-color: #22303C; */
+ }
+ .right{
+     width: 70%;
+ }
+ .cardMain{
+    
+     width: 100%;
+     margin-left: 40%;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+ }
+ .chartGoogleColumn{
+     border: 1px solid #131921;
+     /* background-color: #131921; */
+     margin-top: 20px;
+     margin-left:20% ;
+     box-shadow: 5px 5px 3px black;
+ }
+ .graphs{
+     /* border: 1px solid black; */
+     box-shadow: 5px 5px 3px black;
+     /* display: flex; */
+     margin-left: 18%;
+     margin-right: 1%;
+     justify-content: space-around;
+     margin-top: 7px;
+ }
+ .feilds{
+    /* border: 1px solid red; */
+    width: 70%;
+    margin:auto;
+    margin-left: 25%;
+    margin-top: 95px;
+    padding: 20px;
+    
+
+    
+ }
+ .feilds>h1{
+    font-size: 25px;
+    font-family: 'Sigmar One', cursive;
+    /* font-weight: 600; */
+    font-weight: bolder;
+    color: #131921;
+ }
+ form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 20px;
+ }
+ .feilds>form>input{
+    border: 1px solid #131921;
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Sigmar One', cursive;
+    font-weight: 600;
+ }
+ .feilds>form>button{
+    border: 1px solid #131921;
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ed0331;
+    background-color: #131921;
+    font-family: 'Sigmar One', cursive;
+    font-weight: 600;
+    transition-duration: 500ms;
+ }
+ .feilds>form>button:hover{
+    cursor: pointer;
+    /* border: 1px solid #ed0331; */
+    background-color: white;
+    color: #131921;
+ }
+}
