@@ -1,5 +1,6 @@
 import { UPDATE_PRODUCTS } from "./types";
 import axios from "axios";
+import { api } from "../../globals";
 
 export function updateProducts(payload) {
 	return {
@@ -8,13 +9,17 @@ export function updateProducts(payload) {
 	};
 }
 
-export function getProducts() {
+export function getProducts(payload) {
+	// payload = query
 	return async function (dispatch) {
+		console.log("thunk");
 		try {
-			const products = await axios({
+			const response = await axios({
 				method: "get",
-				url: "",
+				url: `https://dark-jade-swallow-robe.cyclic.app/products`,
+				params: payload,
 			});
+			const products = response.data;
 			dispatch(updateProducts(products));
 		} catch (error) {
 			console.log({ error: error.message });

@@ -1,21 +1,33 @@
-import { Heading, HStack, SimpleGrid, Stack, Box } from "@chakra-ui/react";
+import { Heading, HStack, SimpleGrid, Stack, Box, Spinner } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../redux/products/creators";
 import ProductCard from "../components/ProductCard";
 import Filter from "../components/Filter";
 
 export default function Products(params) {
-	// const products = useSelector((state) => state.productsState.products);
-	const products = getDummyProducts();
+	const products = useSelector((state) => state.productsState.products);
+	// const products = getDummyProducts();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!products) {
-			getProducts();
+			dispatch(getProducts({}));
 		}
 	}, []);
 
 	if (!products) {
-		return <Heading>Loading...</Heading>;
+		return (
+			<Spinner
+				padding="30px"
+				margin="200px"
+				thickness="7px"
+				speed="0.3s"
+				emptyColor="gray"
+				color="blue"
+				size="xl"
+			/>
+		);
 	}
 
 	return (

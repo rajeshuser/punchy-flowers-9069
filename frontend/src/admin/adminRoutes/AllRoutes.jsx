@@ -5,12 +5,13 @@ import AdminOrders from "../adminPages/AdminOrdersPage";
 import AdminProducts from "../adminPages/AdminProducts";
 import AdminUsers from "../adminPages/AdminUsersPage";
 import Home from "../adminPages/Home";
+import AdminAddProductPage from "../adminPages/AdminAddProductPage";
 
-const AllRoutes = () => {
+const AllAdminRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
-      {/* <Route path="/admin/update/:id" element={<AdminUpdateProductPage />} /> */}
+      <Route path="/admin/add" element={<AdminAddProductPage/>} />
       <Route path="/admin/users" element={<AdminUsers/>} />
       <Route path="/admin/products" element={<AdminProducts/>} />
       <Route path="/admin/orders" element={<AdminOrders/>} />
@@ -18,4 +19,4 @@ const AllRoutes = () => {
   );
 };
 
-export default AllRoutes;
+export default AllAdminRoutes;

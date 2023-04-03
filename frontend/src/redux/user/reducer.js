@@ -5,6 +5,7 @@ import {
 	ADD_TO_FAVOURITE,
 	UPDATE_QUANTITY,
 	REMOVE_PRODUCT,
+	MOVE_PRODUCTS_FROM_CART_TO_ORDERS,
 } from "./types";
 
 const userInitialState = {
@@ -54,6 +55,12 @@ export default function userReducer(userState = userInitialState, action) {
 				}
 			}
 			userState.user.cart = updatedCart;
+			return userState;
+		case MOVE_PRODUCTS_FROM_CART_TO_ORDERS:
+			// action.payload = undefined;
+			userState = { ...userState };
+			userState.user.orders = userState.user.cart;
+			userState.user.cart = [];
 			return userState;
 		default:
 			return userState;

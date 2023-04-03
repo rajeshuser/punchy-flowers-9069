@@ -1,7 +1,13 @@
 import { Image, VStack, Heading, Box, HStack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
+import iPhone from "../resources/iPhone.jpg";
+import iWatch from "../resources/iWatch.jpg";
+import Airpod from "../resources/Airpod.jpg";
 
 export default function ProductCard({ product }) {
+	const images = { iPhone, iWatch, Airpod };
+	console.log(images, product.category);
 	return (
 		<VStack
 			margin="auto"
@@ -15,11 +21,7 @@ export default function ProductCard({ product }) {
 			as={Link}
 			to={`/products/${product._id}`}
 		>
-			<Image
-				src={"https://cdn.pixabay.com/photo/2013/07/12/18/39/smartphone-153650_960_720.png"}
-				width="70%"
-				margin="0px 50px 50px 50px"
-			/>
+			<Image src={images[product.category]} width="70%" margin="0px 50px 50px 50px" />
 			<Heading fontSize="lg" color="blue">
 				{product.name}
 			</Heading>
@@ -33,6 +35,7 @@ export default function ProductCard({ product }) {
 				></Box>
 			</HStack>
 			<Heading fontSize="md">${product.price}</Heading>
+			<Rating rating={product.rating} />
 		</VStack>
 	);
 }
