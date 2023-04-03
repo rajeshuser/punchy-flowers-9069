@@ -3,7 +3,8 @@
 Gadget Store
 Clone of apple.com using React, NodeJS, Express, MongoDB, and ChakraUI.
 
-Project Description
+Project Description![Screenshot 2023-04-03 at 3 00 12 PM](https://user-images.githubusercontent.com/107459951/229470226-5d87e0c7-c876-42b4-94a6-617c1852d0a3.png)
+
 This project is a clone of the Apple website that is built using React, Express, MongoDB, and ChakraUI. The website includes the home page, product pages, and Login Signup page. It also includes admin panel.
 
 Installation
