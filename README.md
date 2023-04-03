@@ -53,4 +53,4 @@ This project was created by Rajesh, Asif,Gaurav and Owaise.
 
 
 
-Regenerate response
+deployed netlify - https://rococo-gaufre-db156c.netlify.app/
