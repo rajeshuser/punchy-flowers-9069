@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import AdminNavbar from "../adminComponents/Header/AdminNavbar";
 import Header from "../adminComponents/Header/Header";
-import AdminProductCard from "../adminComponents/Header/productcard/AdminProductCard";
-import styles from "./adminProducts.module.css";
-
-const AdminProducts = () => {
+import styles from "./AdminAddProduct.module.css";
+import AdminNavbar from "../adminComponents/Header/AdminNavbar";
+import axios from "axios";
+const AdminAddProductPage = () => {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
+
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [name, setname] = useState("");
 
   const getProducts = () => {
     try {
@@ -34,13 +38,30 @@ const AdminProducts = () => {
     }
   };
 
+  const addProduct = () => {
+    const payload = {
+      category,
+      image,
+      price,
+      rating,
+      name,
+    };
+
+    axios
+      .post(`https://dark-jade-swallow-robe.cyclic.app/products/add`, payload)
+      .then((res) => alert("Product added"))
+      .catch((err) => console.log(err));
+
+    getProducts();
+  };
+
   useEffect(() => {
     getProducts();
     getUsers();
   }, []);
   return (
-    <div>
-      <div className={styles.navbar}>
+    <div className={styles.add}>
+      <div>
         <AdminNavbar />
       </div>
       <div className={styles.home}>
@@ -86,19 +107,46 @@ const AdminProducts = () => {
               </div>
             </div>
           </div>
-          {/* <div className={styles.searchbar}>
-                <input type="text" placeholder='search products '/>
-                <button>search</button>
-              </div> */}
-          <div className={styles.productcard}>
-            {products?.map((el, i) => {
-              return <AdminProductCard key={i} {...el} />;
-            })}
-          </div>
         </div>
+      </div>
+      <div className={styles.feilds}>
+        <h1>ADD PRODUCT</h1>
+        <form action="">
+          <input
+            onChange={(e) => setname(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="name"
+          />
+          <input
+            onChange={(e) => setImage(e.target.value)}
+            value={image}
+            type="text"
+            placeholder="image"
+          />
+          <input
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+            type="number"
+            placeholder="price"
+          />
+          <input
+            onChange={(e) => setRating(e.target.value)}
+            value={rating}
+            type="number"
+            placeholder="rating"
+          />
+          <input
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+            type="text"
+            placeholder="category"
+          />
+          <button onClick={() => addProduct()}>Add</button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default AdminProducts;
+export default AdminAddProductPage;

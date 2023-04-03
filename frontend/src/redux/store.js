@@ -1,11 +1,15 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+// install "Redux DevTools" extention
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 import userReducer from "../redux/user/reducer";
 import productsReducer from "../redux/products/reducer";
 import axios from "axios";
 
 const rootReducer = combineReducers({ userState: userReducer, productsState: productsReducer });
 
-const store = createStore(rootReducer);
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 export default store;
 
